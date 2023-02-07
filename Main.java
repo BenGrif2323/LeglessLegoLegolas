@@ -1,34 +1,37 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-    
+
     public static void main(String[] args) {
-        IO.initialize();
-        FileManager.openFile(IO.getString(".ldr file path: "));
-        ArrayList<Lego> legos = FileManager.readLDR();
-        int xNorm = Integer.MAX_VALUE;
-        int yNorm = Integer.MAX_VALUE;
-        int zNorm = Integer.MAX_VALUE;
-        System.out.println("Legos:");  //Output to check legos were read in
+        IO io = new IO();
+        String filePath = io.getString(System.lineSeparator() + ".ldr file path: ");
+        FileReader ldrFile = new FileReader(filePath);
+        ArrayList<Lego> legos = ldrFile.readLDR();
+        ldrFile.closeFile();
+        System.out.println(System.lineSeparator() + "Legos:"); // Output to check legos were read in
         for (Lego lego : legos) {
-            System.out.println(lego);  //Output to check legos were read in
-            if (lego.getX() < xNorm) {
-                xNorm = lego.getX();
-            };
-            if (lego.getY() < yNorm) {
-                yNorm = lego.getY();
-            };
-            if (lego.getZ() < zNorm) {
-                zNorm = lego.getZ();
-            };
+            System.out.println(lego); // Output to check legos were read in
         }
-        System.out.println("Normalized:");  //Output to check normalization
+        Printer printer = new Printer();
+        printer.normalize(legos);
+        System.out.println(System.lineSeparator() + "Normalized:"); // Output to check normalization
         for (Lego lego : legos) {
-            lego.normalize(xNorm, yNorm, zNorm);
-            System.out.println(lego);  //Output to check normalization
+            System.out.println(lego); // Output to check normalization
         }
-        FileManager.closeFile();
-        IO.terminate();
+        printer.createPrint(legos);
+        FileWriter output;
+        try {
+            output = new FileWriter(filePath.replace(".ldr", ".ino"));
+            output.write(printer.getOutput());
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(System.lineSeparator() + "Output text for adruino code:");
+        System.out.println(printer.getOutput());
+        io.terminate();
     }
 }
-// Test File Used: /Users/benjamingrifka/Downloads/Test 3x3.ldr
+// Test File Used: Test 3x3.ldr

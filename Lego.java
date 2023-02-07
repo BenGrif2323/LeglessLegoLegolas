@@ -2,9 +2,9 @@ public class Lego {
     // in LDU
     // 1 LDU ~ 1/64 inch
     // 1 LDU ~ 0.4 mm
-    int x;
-    int y;
-    int z;
+    private int x;
+    private int y;
+    private int z;
 
     Lego(int i, int j, int k) {
         x = i;
