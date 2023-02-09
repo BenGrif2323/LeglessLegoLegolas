@@ -10,8 +10,90 @@ public class Printer {
     private int maxX;
     private int maxZ;
     private boolean outOfBounds;
-    private int placingLayer;
+    private int placingY;
     private String output;
+    private final String inoBegin = "#define PIN_VRX A1" + System.lineSeparator() +
+            "#define PIN_VRY A0" + System.lineSeparator() +
+            "#define PIN_SWITCH A2" + System.lineSeparator() + System.lineSeparator() +
+            "// Pinout according to https://github.com/leoheck/developower-v2.0/blob/master/board.pdf"
+            + System.lineSeparator() +
+            "#define PIN_DISABLE_MOTORS 8" + System.lineSeparator() + System.lineSeparator() +
+            "#define PIN_DIR_X 5" + System.lineSeparator() +
+            "#define PIN_STEP_X 2" + System.lineSeparator() +
+            "#define PIN_DIR_Y 6" + System.lineSeparator() +
+            "#define PIN_STEP_Y 3" + System.lineSeparator() +
+            "#define PIN_DIR_Z 7" + System.lineSeparator() +
+            "#define PIN_STEP_Z 4" + System.lineSeparator() + System.lineSeparator() +
+            "// Not entirely sure about these ones" + System.lineSeparator() +
+            "#define PIN_ZPLUSMINUS 12" + System.lineSeparator() +
+            "#define PIN_YPLUSMINUS 10" + System.lineSeparator() +
+            "#define PIN_XPLUSMINUS 9" + System.lineSeparator() + System.lineSeparator() +
+            "#define NSAMPLES 8" + System.lineSeparator() +
+            "typedef struct {" + System.lineSeparator() +
+            "  int samples[NSAMPLES];" + System.lineSeparator() +
+            "  int curr;" + System.lineSeparator() +
+            "} Sampler;" + System.lineSeparator() + System.lineSeparator() +
+            "int averaged(Sampler *s, int value) {" + System.lineSeparator() +
+            "  s->samples[s->curr++] = value;" + System.lineSeparator() +
+            "  s->curr %= NSAMPLES;" + System.lineSeparator() + System.lineSeparator() +
+            "  int sum = 0;" + System.lineSeparator() +
+            "  for (int i = 0; i < NSAMPLES; i++) {" + System.lineSeparator() +
+            "    sum += s->samples[i];" + System.lineSeparator() +
+            "  }" + System.lineSeparator() + System.lineSeparator() +
+            "  return sum / NSAMPLES;" + System.lineSeparator() +
+            "}" + System.lineSeparator() + System.lineSeparator() +
+            "void initSampler(Sampler *s, int value) {" + System.lineSeparator() +
+            "  for (int i = 0; i < NSAMPLES; i++) s->samples[i] = value;" + System.lineSeparator() +
+            "}" + System.lineSeparator() + System.lineSeparator() +
+            "Sampler xSampler;" + System.lineSeparator() +
+            "Sampler ySampler;" + System.lineSeparator() + System.lineSeparator() +
+            "int dx = 0;" + System.lineSeparator() +
+            "int dy = 0;" + System.lineSeparator() + System.lineSeparator() +
+            "void setup() {" + System.lineSeparator() +
+            "  //put your setup code here, to run once:" + System.lineSeparator() +
+            "  pinMode(PIN_DISABLE_MOTORS, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_VRX, INPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_VRY, INPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_STEP_X, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_STEP_Y, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_DIR_X, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_DIR_Y, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_SWITCH, INPUT_PULLUP);" + System.lineSeparator() +
+            "  //analogReadResolution(10);" + System.lineSeparator() +
+            "  //Serial.begin(9600);" + System.lineSeparator() + System.lineSeparator() +
+            "  initSampler(&xSampler, 512);" + System.lineSeparator() +
+            "  initSampler(&ySampler, 512);" + System.lineSeparator() +
+            "}" + System.lineSeparator() + System.lineSeparator() +
+            "int map3(int val, int min1, int cen1, int max1, int min2, int cen2, int max2) {" + System.lineSeparator() +
+            "  if (val < cen1) {" + System.lineSeparator() +
+            "    return map(val, min1, cen1, min2, cen2);" + System.lineSeparator() +
+            "  } else {" + System.lineSeparator() +
+            "    return map(val, cen1, max1, cen2, max2);" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
+            "}" + System.lineSeparator() + System.lineSeparator() +
+            "// Determined experimentally by measuring analogRead(PIN_VR{X,Y})" + System.lineSeparator() +
+            "#define CENX 497" + System.lineSeparator() +
+            "#define CENY 526" + System.lineSeparator() +
+            "// Determined by making it big enough to reduce unwanted stepping" + System.lineSeparator() +
+            "#define SLOP 7" + System.lineSeparator() + System.lineSeparator() +
+            "void loop() {" + System.lineSeparator();
+    private final String inoEnd = "}";
+    private final String init = "//code to initialize head location" + System.lineSeparator();
+
+    private String legoPickup() {
+        return "//code to pick up lego" + System.lineSeparator();
+    }
+
+    private String legoReload() {
+        headPosX = 0;
+        headPosY = placingY + 1;
+        headPosZ = 0;
+        return moveTo(0, 0, 0) + System.lineSeparator() + legoPickup();
+    }
+
+    private String moveTo(int x, int y, int z) {
+        return "//code to move head to (" + x + ", " + y + ", " + z + ")" + System.lineSeparator();
+    }
 
     Printer() {
         maxX = Integer.MAX_VALUE;
@@ -27,31 +109,22 @@ public class Printer {
     }
 
     private void initialize() {
-        output += "//code to set up .ino file" + System.lineSeparator();
-        output += "//code to initialize head location" + System.lineSeparator();
+        output = inoBegin;
+        output += init;
         headPosX = 0;
         headPosY = maxY;
         headPosZ = 0;
     }
 
     private void end() {
-        output += "//code to close .ino file";
-    }
-
-    private void pickUpLego() {
-        output += "//code to move head to lego loading location" + System.lineSeparator();
-        output += "//code to pick up lego" + System.lineSeparator();
-        headPosX = 0;
-        headPosY = placingLayer + 1;
-        headPosZ = 0;
+        output += inoEnd;
     }
 
     private void placeLego(Lego lego) {
-        output += "//code to move head to (" + lego.getX() + ", " + lego.getY() + ", " + lego.getZ() + ")"
-                + System.lineSeparator();
+        output += moveTo(lego.getX(), lego.getY(), lego.getZ());
         output += "//code to place lego" + System.lineSeparator();
         headPosX = lego.getX();
-        headPosY = lego.getY();
+        headPosY = lego.getY() + 1;
         headPosZ = lego.getZ();
     }
 
@@ -132,8 +205,8 @@ public class Printer {
                     Collections.sort(listX, Comparator.comparing(Lego::getZ));
                     for (Lego lego : listX) {
                         if (lego.getZ() < maxZ) {
-                            placingLayer = lego.getY();
-                            pickUpLego();
+                            placingY = lego.getY();
+                            legoReload();
                             placeLego(lego);
                         } else {
                             outOfBounds = true;
