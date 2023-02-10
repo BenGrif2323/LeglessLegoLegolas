@@ -9,6 +9,9 @@ public class Printer {
     private int maxY;
     private int maxX;
     private int maxZ;
+    private final int stepSizeX = 1;
+    private final int stepSizeY = 1;
+    private final int stepSizeZ = 1;
     private boolean outOfBounds;
     private int placingY;
     private String output;
@@ -78,21 +81,71 @@ public class Printer {
             "#define SLOP 7" + System.lineSeparator() + System.lineSeparator() +
             "void loop() {" + System.lineSeparator();
     private final String inoEnd = "}";
-    private final String init = "//code to initialize head location" + System.lineSeparator();
+    private final String init = System.lineSeparator() + "  /*****************************************"
+            + System.lineSeparator() + "  code to initialize head location" + System.lineSeparator()
+            + "  *****************************************/" + System.lineSeparator() + System.lineSeparator();
+
+    private String moveTo(int x, int y, int z) {
+        int tempX = x - headPosX;
+        int tempY = y - headPosY;
+        int tempZ = z - headPosZ;
+        int tempMax;
+        tempMax = Math.max(Math.max(Math.abs(tempX), Math.abs(tempY)), Math.abs(tempZ));
+        String out = "  for (int i = 0; i < " + Integer.toString(tempMax) + "; i++) {" + System.lineSeparator() +
+                "    if (i<" + Integer.toString(Math.abs(tempX)) + ") {" + System.lineSeparator() +
+                "        if (" + Integer.toString(tempX) + " > 0) {" + System.lineSeparator() +
+                "            //Step in Positive Direction" + System.lineSeparator() +
+                "        }" + System.lineSeparator() +
+                "        else if (" + Integer.toString(tempX) + " < 0) {" + System.lineSeparator() +
+                "            //Step in Negative Direction" + System.lineSeparator() +
+                "        }" + System.lineSeparator() +
+                "        digitalWrite(PIN_STEP_X, HIGH);" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "    if (i<" + Integer.toString(Math.abs(tempY)) + ") {" + System.lineSeparator() +
+                "        if (" + Integer.toString(tempY) + " > 0) {" + System.lineSeparator() +
+                "            //Step in Positive Direction" + System.lineSeparator() +
+                "        }" + System.lineSeparator() +
+                "        else if (" + Integer.toString(tempY) + " < 0) {" + System.lineSeparator() +
+                "            //Step in Negative Direction" + System.lineSeparator() +
+                "        }" + System.lineSeparator() +
+                "        digitalWrite(PIN_STEP_Y, HIGH);" + System.lineSeparator() +
+                "    }" + System.lineSeparator() +
+                "    //if (i<" + Integer.toString(Math.abs(tempZ)) + ") {" + System.lineSeparator() +
+                "    //    if (" + Integer.toString(tempZ) + " > 0) {" + System.lineSeparator() +
+                "    //        //Step in Positive Direction" + System.lineSeparator() +
+                "    //    }" + System.lineSeparator() +
+                "    //    else if (" + Integer.toString(tempZ) + " < 0) {" + System.lineSeparator() +
+                "    //        //Step in Negative Direction" + System.lineSeparator() +
+                "    //    }" + System.lineSeparator() +
+                "    //    digitalWrite(PIN_STEP_Z, HIGH);" + System.lineSeparator() +
+                "    //}" + System.lineSeparator() +
+                "    delayMicroseconds(stepDelay);" + System.lineSeparator() +
+                "    digitalWrite(PIN_STEP_X, LOW);" + System.lineSeparator() +
+                "    digitalWrite(PIN_STEP_Y, LOW);" + System.lineSeparator() +
+                "    //digitalWrite(PIN_STEP_Z, LOW);" + System.lineSeparator() +
+                "    delayMicroseconds(stepDelay);" + System.lineSeparator() +
+                "  }" + System.lineSeparator();
+        headPosX = x;
+        headPosY = y;
+        headPosZ = z;
+        return out;
+    }
 
     private String legoPickup() {
-        return "//code to pick up lego" + System.lineSeparator();
+        String out = "  /*********************" + System.lineSeparator() + "  code to pick up lego"
+                + System.lineSeparator() + "  *********************/" + System.lineSeparator() + System.lineSeparator();
+        return moveTo(0, 0, 0) + System.lineSeparator() + out;
     }
 
     private String legoReload() {
-        headPosX = 0;
-        headPosY = placingY + 1;
-        headPosZ = 0;
-        return moveTo(0, 0, 0) + System.lineSeparator() + legoPickup();
+        return moveTo(0, placingY, 0) + System.lineSeparator() + legoPickup() + moveTo(0, placingY, 0)
+                + System.lineSeparator();
     }
 
-    private String moveTo(int x, int y, int z) {
-        return "//code to move head to (" + x + ", " + y + ", " + z + ")" + System.lineSeparator();
+    private String legoPlace(Lego lego) {
+        String out = "  /*********************" + System.lineSeparator() + "  code to place lego"
+                + System.lineSeparator() + "  *********************/" + System.lineSeparator() + System.lineSeparator();
+        return moveTo(lego.getX(), placingY, lego.getZ()) + System.lineSeparator() + out;
     }
 
     Printer() {
@@ -112,20 +165,12 @@ public class Printer {
         output = inoBegin;
         output += init;
         headPosX = 0;
-        headPosY = maxY;
+        headPosY = 0;
         headPosZ = 0;
     }
 
     private void end() {
         output += inoEnd;
-    }
-
-    private void placeLego(Lego lego) {
-        output += moveTo(lego.getX(), lego.getY(), lego.getZ());
-        output += "//code to place lego" + System.lineSeparator();
-        headPosX = lego.getX();
-        headPosY = lego.getY() + 1;
-        headPosZ = lego.getZ();
     }
 
     public void normalize(ArrayList<Lego> legos) {
@@ -205,9 +250,9 @@ public class Printer {
                     Collections.sort(listX, Comparator.comparing(Lego::getZ));
                     for (Lego lego : listX) {
                         if (lego.getZ() < maxZ) {
-                            placingY = lego.getY();
-                            legoReload();
-                            placeLego(lego);
+                            placingY = lego.getY() + 1;
+                            output += legoReload();
+                            output += legoPlace(lego);
                         } else {
                             outOfBounds = true;
                             break;

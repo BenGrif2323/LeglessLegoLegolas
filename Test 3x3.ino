@@ -22,6 +22,7 @@ typedef struct {
   int samples[NSAMPLES];
   int curr;
 } Sampler;
+
 int averaged(Sampler *s, int value) {
   s->samples[s->curr++] = value;
   s->curr %= NSAMPLES;
@@ -76,41 +77,1341 @@ int map3(int val, int min1, int cen1, int max1, int min2, int cen2, int max2) {
 #define SLOP 7
 
 void loop() {
-//code to initialize head location
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (0, 0, 0)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (0, 0, 40)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (0, 0, 80)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (40, 0, 0)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (40, 0, 40)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (40, 0, 80)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (80, 0, 0)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (80, 0, 40)
-//code to place lego
-//code to move head to lego loading location
-//code to pick up lego
-//code to move head to (80, 0, 80)
-//code to place lego
+
+  /*****************************************
+  code to initialize head location
+  *****************************************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 0; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 0; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 40; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<40) {
+    //    if (40 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (40 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 40; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<40) {
+    //    if (-40 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (-40 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 80; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<80) {
+    //    if (80 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (80 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 80; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<80) {
+    //    if (-80 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (-80 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 40; i++) {
+    if (i<40) {
+        if (40 > 0) {
+            //Step in Positive Direction
+        }
+        else if (40 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 40; i++) {
+    if (i<40) {
+        if (-40 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-40 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 40; i++) {
+    if (i<40) {
+        if (40 > 0) {
+            //Step in Positive Direction
+        }
+        else if (40 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<40) {
+    //    if (40 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (40 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 40; i++) {
+    if (i<40) {
+        if (-40 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-40 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<40) {
+    //    if (-40 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (-40 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 80; i++) {
+    if (i<40) {
+        if (40 > 0) {
+            //Step in Positive Direction
+        }
+        else if (40 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<80) {
+    //    if (80 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (80 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 80; i++) {
+    if (i<40) {
+        if (-40 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-40 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<80) {
+    //    if (-80 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (-80 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 80; i++) {
+    if (i<80) {
+        if (80 > 0) {
+            //Step in Positive Direction
+        }
+        else if (80 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 80; i++) {
+    if (i<80) {
+        if (-80 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-80 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 80; i++) {
+    if (i<80) {
+        if (80 > 0) {
+            //Step in Positive Direction
+        }
+        else if (80 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<40) {
+    //    if (40 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (40 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
+  for (int i = 0; i < 80; i++) {
+    if (i<80) {
+        if (-80 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-80 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<40) {
+    //    if (-40 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (-40 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (-1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (-1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to pick up lego
+  *********************/
+
+  for (int i = 0; i < 1; i++) {
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<1) {
+        if (1 > 0) {
+            //Step in Positive Direction
+        }
+        else if (1 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<0) {
+    //    if (0 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (0 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  for (int i = 0; i < 80; i++) {
+    if (i<80) {
+        if (80 > 0) {
+            //Step in Positive Direction
+        }
+        else if (80 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_X, HIGH);
+    }
+    if (i<0) {
+        if (0 > 0) {
+            //Step in Positive Direction
+        }
+        else if (0 < 0) {
+            //Step in Negative Direction
+        }
+        digitalWrite(PIN_STEP_Y, HIGH);
+    }
+    //if (i<80) {
+    //    if (80 > 0) {
+    //        //Step in Positive Direction
+    //    }
+    //    else if (80 < 0) {
+    //        //Step in Negative Direction
+    //    }
+    //    digitalWrite(PIN_STEP_Z, HIGH);
+    //}
+    delayMicroseconds(stepDelay);
+    digitalWrite(PIN_STEP_X, LOW);
+    digitalWrite(PIN_STEP_Y, LOW);
+    //digitalWrite(PIN_STEP_Z, LOW);
+    delayMicroseconds(stepDelay);
+  }
+
+  /*********************
+  code to place lego
+  *********************/
+
 }
