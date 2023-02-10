@@ -77,6 +77,8 @@ int map3(int val, int min1, int cen1, int max1, int min2, int cen2, int max2) {
 #define SLOP 7
 
 void loop() {
+  int sw = digitalRead(PIN_SWITCH);
+  int stepDelay = sw? 120 : 40;
 
   /*****************************************
   code to initialize head location

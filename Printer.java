@@ -79,9 +79,11 @@ public class Printer {
             "#define CENY 526" + System.lineSeparator() +
             "// Determined by making it big enough to reduce unwanted stepping" + System.lineSeparator() +
             "#define SLOP 7" + System.lineSeparator() + System.lineSeparator() +
-            "void loop() {" + System.lineSeparator();
+            "void loop() {" + System.lineSeparator()+
+            "  int sw = digitalRead(PIN_SWITCH);"+ System.lineSeparator() +
+            "  int stepDelay = sw? 120 : 40;" + System.lineSeparator() + System.lineSeparator();
     private final String inoEnd = "}";
-    private final String init = System.lineSeparator() + "  /*****************************************"
+    private final String init = "  /*****************************************"
             + System.lineSeparator() + "  code to initialize head location" + System.lineSeparator()
             + "  *****************************************/" + System.lineSeparator() + System.lineSeparator();
 
