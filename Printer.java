@@ -88,9 +88,9 @@ public class Printer {
             + "  *****************************************/" + System.lineSeparator() + System.lineSeparator();
 
     private String moveTo(int x, int y, int z) {
-        int tempX = x - headPosX;
-        int tempY = y - headPosY;
-        int tempZ = z - headPosZ;
+        int tempX = (x - headPosX)/stepSizeX;
+        int tempY = (y - headPosY)/stepSizeY;
+        int tempZ = (z - headPosZ)/stepSizeZ;
         int tempMax;
         tempMax = Math.max(Math.max(Math.abs(tempX), Math.abs(tempY)), Math.abs(tempZ));
         String out = "  for (int i = 0; i < " + Integer.toString(tempMax) + "; i++) {" + System.lineSeparator() +
