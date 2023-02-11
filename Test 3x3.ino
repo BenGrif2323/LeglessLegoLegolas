@@ -47,23 +47,6 @@ int dy = 0;
 //int sw = 0;
 int stepDelay = 40;
 
-void setup() {
-  //put your setup code here, to run once:
-  pinMode(PIN_DISABLE_MOTORS, OUTPUT);
-  pinMode(PIN_VRX, INPUT);
-  pinMode(PIN_VRY, INPUT);
-  pinMode(PIN_STEP_X, OUTPUT);
-  pinMode(PIN_STEP_Y, OUTPUT);
-  pinMode(PIN_DIR_X, OUTPUT);
-  pinMode(PIN_DIR_Y, OUTPUT);
-  pinMode(PIN_SWITCH, INPUT_PULLUP);
-  //analogReadResolution(10);
-  //Serial.begin(9600);
-
-  initSampler(&xSampler, 512);
-  initSampler(&ySampler, 512);
-}
-
 int map3(int val, int min1, int cen1, int max1, int min2, int cen2, int max2) {
   if (val < cen1) {
     return map(val, min1, cen1, min2, cen2);
@@ -73,32 +56,32 @@ int map3(int val, int min1, int cen1, int max1, int min2, int cen2, int max2) {
 }
 
 void move(int x, int absX, int y, int absY, int z, int absZ, int max) {
+  if (x >= 0) {
+    //X Steps in Positive Direction
+  }
+  else {
+    //X Steps in Negative Direction
+  }
+  if (y >= 0) {
+    //Y Steps in Positive Direction
+  }
+  else {
+    //Y Steps in Negative Direction
+  }
+  if (z >= 0) {
+    //Z Steps in Positive Direction
+  }
+  else {
+    //Z Steps in Negative Direction
+  }
   for (int i = 0; i < max; i++) {
     if (i < absX) {
-      if (x > 0) {
-        //Step in Positive Direction
-      }
-      else if (x < 0) {
-        //Step in Negative Direction
-      }
       digitalWrite(PIN_STEP_X, HIGH);
     }
     if (i < absY) {
-      if (y > 0) {
-        //Step in Positive Direction
-      }
-      else if (y < 0) {
-        //Step in Negative Direction
-      }
       digitalWrite(PIN_STEP_Y, HIGH);
     }
     /*if (i < absZ) {
-      if (z > 0) {
-        //Step in Positive Direction
-      }
-      else if (z < 0) {
-        //Step in Negative Direction
-      }
       digitalWrite(PIN_STEP_Z, HIGH);
     }*/
     delayMicroseconds(stepDelay);
@@ -115,9 +98,22 @@ void move(int x, int absX, int y, int absY, int z, int absZ, int max) {
 // Determined by making it big enough to reduce unwanted stepping
 #define SLOP 7
 
-void loop() {
-  //sw = digitalRead(PIN_SWITCH);
-  //stepDelay = sw? 120 : 40;
+void setup() {
+
+  //put your setup code here, to run once:
+  pinMode(PIN_DISABLE_MOTORS, OUTPUT);
+  pinMode(PIN_VRX, INPUT);
+  pinMode(PIN_VRY, INPUT);
+  pinMode(PIN_STEP_X, OUTPUT);
+  pinMode(PIN_STEP_Y, OUTPUT);
+  pinMode(PIN_DIR_X, OUTPUT);
+  pinMode(PIN_DIR_Y, OUTPUT);
+  pinMode(PIN_SWITCH, INPUT_PULLUP);
+  //analogReadResolution(10);
+  //Serial.begin(9600);
+
+  initSampler(&xSampler, 512);
+  initSampler(&ySampler, 512);
 
   /*****************************************
   code to initialize head location
@@ -267,4 +263,9 @@ void loop() {
   code to place lego
   *********************/
 
+}
+
+void loop() {
+  //sw = digitalRead(PIN_SWITCH);
+  //stepDelay = sw? 120 : 40;
 }

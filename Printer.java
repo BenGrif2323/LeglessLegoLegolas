@@ -54,21 +54,6 @@ public class Printer {
             "int dy = 0;" + System.lineSeparator() +
             "//int sw = 0;" + System.lineSeparator() +
             "int stepDelay = 40;" + System.lineSeparator() + System.lineSeparator() +
-            "void setup() {" + System.lineSeparator() +
-            "  //put your setup code here, to run once:" + System.lineSeparator() +
-            "  pinMode(PIN_DISABLE_MOTORS, OUTPUT);" + System.lineSeparator() +
-            "  pinMode(PIN_VRX, INPUT);" + System.lineSeparator() +
-            "  pinMode(PIN_VRY, INPUT);" + System.lineSeparator() +
-            "  pinMode(PIN_STEP_X, OUTPUT);" + System.lineSeparator() +
-            "  pinMode(PIN_STEP_Y, OUTPUT);" + System.lineSeparator() +
-            "  pinMode(PIN_DIR_X, OUTPUT);" + System.lineSeparator() +
-            "  pinMode(PIN_DIR_Y, OUTPUT);" + System.lineSeparator() +
-            "  pinMode(PIN_SWITCH, INPUT_PULLUP);" + System.lineSeparator() +
-            "  //analogReadResolution(10);" + System.lineSeparator() +
-            "  //Serial.begin(9600);" + System.lineSeparator() + System.lineSeparator() +
-            "  initSampler(&xSampler, 512);" + System.lineSeparator() +
-            "  initSampler(&ySampler, 512);" + System.lineSeparator() +
-            "}" + System.lineSeparator() + System.lineSeparator() +
             "int map3(int val, int min1, int cen1, int max1, int min2, int cen2, int max2) {" + System.lineSeparator() +
             "  if (val < cen1) {" + System.lineSeparator() +
             "    return map(val, min1, cen1, min2, cen2);" + System.lineSeparator() +
@@ -77,32 +62,32 @@ public class Printer {
             "  }" + System.lineSeparator() +
             "}" + System.lineSeparator() + System.lineSeparator() +
             "void move(int x, int absX, int y, int absY, int z, int absZ, int max) {" + System.lineSeparator() +
+            "  if (x >= 0) {" + System.lineSeparator() +
+            "    //X Steps in Positive Direction" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
+            "  else {" + System.lineSeparator() +
+            "    //X Steps in Negative Direction" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
+            "  if (y >= 0) {" + System.lineSeparator() +
+            "    //Y Steps in Positive Direction" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
+            "  else {" + System.lineSeparator() +
+            "    //Y Steps in Negative Direction" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
+            "  if (z >= 0) {" + System.lineSeparator() +
+            "    //Z Steps in Positive Direction" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
+            "  else {" + System.lineSeparator() +
+            "    //Z Steps in Negative Direction" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
             "  for (int i = 0; i < max; i++) {" + System.lineSeparator() +
             "    if (i < absX) {" + System.lineSeparator() +
-            "      if (x > 0) {" + System.lineSeparator() +
-            "        //Step in Positive Direction" + System.lineSeparator() +
-            "      }" + System.lineSeparator() +
-            "      else if (x < 0) {" + System.lineSeparator() +
-            "        //Step in Negative Direction" + System.lineSeparator() +
-            "      }" + System.lineSeparator() +
             "      digitalWrite(PIN_STEP_X, HIGH);" + System.lineSeparator() +
             "    }" + System.lineSeparator() +
             "    if (i < absY) {" + System.lineSeparator() +
-            "      if (y > 0) {" + System.lineSeparator() +
-            "        //Step in Positive Direction" + System.lineSeparator() +
-            "      }" + System.lineSeparator() +
-            "      else if (y < 0) {" + System.lineSeparator() +
-            "        //Step in Negative Direction" + System.lineSeparator() +
-            "      }" + System.lineSeparator() +
             "      digitalWrite(PIN_STEP_Y, HIGH);" + System.lineSeparator() +
             "    }" + System.lineSeparator() +
             "    /*if (i < absZ) {" + System.lineSeparator() +
-            "      if (z > 0) {" + System.lineSeparator() +
-            "        //Step in Positive Direction" + System.lineSeparator() +
-            "      }" + System.lineSeparator() +
-            "      else if (z < 0) {" + System.lineSeparator() +
-            "        //Step in Negative Direction" + System.lineSeparator() +
-            "      }" + System.lineSeparator() +
             "      digitalWrite(PIN_STEP_Z, HIGH);" + System.lineSeparator() +
             "    }*/" + System.lineSeparator() +
             "    delayMicroseconds(stepDelay);" + System.lineSeparator() +
@@ -117,10 +102,24 @@ public class Printer {
             "#define CENY 526" + System.lineSeparator() +
             "// Determined by making it big enough to reduce unwanted stepping" + System.lineSeparator() +
             "#define SLOP 7" + System.lineSeparator() + System.lineSeparator() +
+            "void setup() {" + System.lineSeparator() + System.lineSeparator() +
+            "  //put your setup code here, to run once:" + System.lineSeparator() +
+            "  pinMode(PIN_DISABLE_MOTORS, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_VRX, INPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_VRY, INPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_STEP_X, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_STEP_Y, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_DIR_X, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_DIR_Y, OUTPUT);" + System.lineSeparator() +
+            "  pinMode(PIN_SWITCH, INPUT_PULLUP);" + System.lineSeparator() +
+            "  //analogReadResolution(10);" + System.lineSeparator() +
+            "  //Serial.begin(9600);" + System.lineSeparator() + System.lineSeparator() +
+            "  initSampler(&xSampler, 512);" + System.lineSeparator() +
+            "  initSampler(&ySampler, 512);" + System.lineSeparator() + System.lineSeparator();
+    private final String inoEnd = "}" + System.lineSeparator() + System.lineSeparator() +
             "void loop() {" + System.lineSeparator() +
             "  //sw = digitalRead(PIN_SWITCH);" + System.lineSeparator() +
-            "  //stepDelay = sw? 120 : 40;" + System.lineSeparator() + System.lineSeparator();
-    private final String inoEnd = "}";
+            "  //stepDelay = sw? 120 : 40;" + System.lineSeparator() + "}";
     private final String init = "  /*****************************************"
             + System.lineSeparator() + "  code to initialize head location" + System.lineSeparator()
             + "  *****************************************/" + System.lineSeparator() + System.lineSeparator();
