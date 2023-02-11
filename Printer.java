@@ -51,7 +51,9 @@ public class Printer {
             "Sampler xSampler;" + System.lineSeparator() +
             "Sampler ySampler;" + System.lineSeparator() + System.lineSeparator() +
             "int dx = 0;" + System.lineSeparator() +
-            "int dy = 0;" + System.lineSeparator() + System.lineSeparator() +
+            "int dy = 0;" + System.lineSeparator() +
+            "//int sw = 0;" + System.lineSeparator() +
+            "int stepDelay = 40;" + System.lineSeparator() + System.lineSeparator() +
             "void setup() {" + System.lineSeparator() +
             "  //put your setup code here, to run once:" + System.lineSeparator() +
             "  pinMode(PIN_DISABLE_MOTORS, OUTPUT);" + System.lineSeparator() +
@@ -74,59 +76,64 @@ public class Printer {
             "    return map(val, cen1, max1, cen2, max2);" + System.lineSeparator() +
             "  }" + System.lineSeparator() +
             "}" + System.lineSeparator() + System.lineSeparator() +
+            "void move(int x, int absX, int y, int absY, int z, int absZ, int max) {" + System.lineSeparator() +
+            "  for (int i = 0; i < max; i++) {" + System.lineSeparator() +
+            "    if (i < absX) {" + System.lineSeparator() +
+            "      if (x > 0) {" + System.lineSeparator() +
+            "        //Step in Positive Direction" + System.lineSeparator() +
+            "      }" + System.lineSeparator() +
+            "      else if (x < 0) {" + System.lineSeparator() +
+            "        //Step in Negative Direction" + System.lineSeparator() +
+            "      }" + System.lineSeparator() +
+            "      digitalWrite(PIN_STEP_X, HIGH);" + System.lineSeparator() +
+            "    }" + System.lineSeparator() +
+            "    if (i < absY) {" + System.lineSeparator() +
+            "      if (y > 0) {" + System.lineSeparator() +
+            "        //Step in Positive Direction" + System.lineSeparator() +
+            "      }" + System.lineSeparator() +
+            "      else if (y < 0) {" + System.lineSeparator() +
+            "        //Step in Negative Direction" + System.lineSeparator() +
+            "      }" + System.lineSeparator() +
+            "      digitalWrite(PIN_STEP_Y, HIGH);" + System.lineSeparator() +
+            "    }" + System.lineSeparator() +
+            "    /*if (i < absZ) {" + System.lineSeparator() +
+            "      if (z > 0) {" + System.lineSeparator() +
+            "        //Step in Positive Direction" + System.lineSeparator() +
+            "      }" + System.lineSeparator() +
+            "      else if (z < 0) {" + System.lineSeparator() +
+            "        //Step in Negative Direction" + System.lineSeparator() +
+            "      }" + System.lineSeparator() +
+            "      digitalWrite(PIN_STEP_Z, HIGH);" + System.lineSeparator() +
+            "    }*/" + System.lineSeparator() +
+            "    delayMicroseconds(stepDelay);" + System.lineSeparator() +
+            "    digitalWrite(PIN_STEP_X, LOW);" + System.lineSeparator() +
+            "    digitalWrite(PIN_STEP_Y, LOW);" + System.lineSeparator() +
+            "    //digitalWrite(PIN_STEP_Z, LOW);" + System.lineSeparator() +
+            "    delayMicroseconds(stepDelay);" + System.lineSeparator() +
+            "  }" + System.lineSeparator() +
+            "}" + System.lineSeparator() + System.lineSeparator() +
             "// Determined experimentally by measuring analogRead(PIN_VR{X,Y})" + System.lineSeparator() +
             "#define CENX 497" + System.lineSeparator() +
             "#define CENY 526" + System.lineSeparator() +
             "// Determined by making it big enough to reduce unwanted stepping" + System.lineSeparator() +
             "#define SLOP 7" + System.lineSeparator() + System.lineSeparator() +
-            "void loop() {" + System.lineSeparator()+
-            "  int sw = digitalRead(PIN_SWITCH);"+ System.lineSeparator() +
-            "  int stepDelay = sw? 120 : 40;" + System.lineSeparator() + System.lineSeparator();
+            "void loop() {" + System.lineSeparator() +
+            "  //sw = digitalRead(PIN_SWITCH);" + System.lineSeparator() +
+            "  //stepDelay = sw? 120 : 40;" + System.lineSeparator() + System.lineSeparator();
     private final String inoEnd = "}";
     private final String init = "  /*****************************************"
             + System.lineSeparator() + "  code to initialize head location" + System.lineSeparator()
             + "  *****************************************/" + System.lineSeparator() + System.lineSeparator();
 
     private String moveTo(int x, int y, int z) {
-        int tempX = (x - headPosX)/stepSizeX;
-        int tempY = (y - headPosY)/stepSizeY;
-        int tempZ = (z - headPosZ)/stepSizeZ;
-        int tempMax;
-        tempMax = Math.max(Math.max(Math.abs(tempX), Math.abs(tempY)), Math.abs(tempZ));
-        String out = "  for (int i = 0; i < " + Integer.toString(tempMax) + "; i++) {" + System.lineSeparator() +
-                "    if (i<" + Integer.toString(Math.abs(tempX)) + ") {" + System.lineSeparator() +
-                "        if (" + Integer.toString(tempX) + " > 0) {" + System.lineSeparator() +
-                "            //Step in Positive Direction" + System.lineSeparator() +
-                "        }" + System.lineSeparator() +
-                "        else if (" + Integer.toString(tempX) + " < 0) {" + System.lineSeparator() +
-                "            //Step in Negative Direction" + System.lineSeparator() +
-                "        }" + System.lineSeparator() +
-                "        digitalWrite(PIN_STEP_X, HIGH);" + System.lineSeparator() +
-                "    }" + System.lineSeparator() +
-                "    if (i<" + Integer.toString(Math.abs(tempY)) + ") {" + System.lineSeparator() +
-                "        if (" + Integer.toString(tempY) + " > 0) {" + System.lineSeparator() +
-                "            //Step in Positive Direction" + System.lineSeparator() +
-                "        }" + System.lineSeparator() +
-                "        else if (" + Integer.toString(tempY) + " < 0) {" + System.lineSeparator() +
-                "            //Step in Negative Direction" + System.lineSeparator() +
-                "        }" + System.lineSeparator() +
-                "        digitalWrite(PIN_STEP_Y, HIGH);" + System.lineSeparator() +
-                "    }" + System.lineSeparator() +
-                "    //if (i<" + Integer.toString(Math.abs(tempZ)) + ") {" + System.lineSeparator() +
-                "    //    if (" + Integer.toString(tempZ) + " > 0) {" + System.lineSeparator() +
-                "    //        //Step in Positive Direction" + System.lineSeparator() +
-                "    //    }" + System.lineSeparator() +
-                "    //    else if (" + Integer.toString(tempZ) + " < 0) {" + System.lineSeparator() +
-                "    //        //Step in Negative Direction" + System.lineSeparator() +
-                "    //    }" + System.lineSeparator() +
-                "    //    digitalWrite(PIN_STEP_Z, HIGH);" + System.lineSeparator() +
-                "    //}" + System.lineSeparator() +
-                "    delayMicroseconds(stepDelay);" + System.lineSeparator() +
-                "    digitalWrite(PIN_STEP_X, LOW);" + System.lineSeparator() +
-                "    digitalWrite(PIN_STEP_Y, LOW);" + System.lineSeparator() +
-                "    //digitalWrite(PIN_STEP_Z, LOW);" + System.lineSeparator() +
-                "    delayMicroseconds(stepDelay);" + System.lineSeparator() +
-                "  }" + System.lineSeparator();
+        int tempX = (x - headPosX) / stepSizeX;
+        int tempY = (y - headPosY) / stepSizeY;
+        int tempZ = (z - headPosZ) / stepSizeZ;
+        int tempMax = Math.max(Math.max(Math.abs(tempX), Math.abs(tempY)), Math.abs(tempZ));
+        String out = "  move(" + Integer.toString(tempX) + ", " + Integer.toString(Math.abs(tempX)) + ", "
+                + Integer.toString(tempY) + ", " + Integer.toString(Math.abs(tempY)) + ", " + Integer.toString(tempZ)
+                + ", " + Integer.toString(Math.abs(tempZ)) + ", " + Integer.toString(tempMax) + ");"
+                + System.lineSeparator();
         headPosX = x;
         headPosY = y;
         headPosZ = z;
