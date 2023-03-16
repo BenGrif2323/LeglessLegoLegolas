@@ -7,10 +7,18 @@ input.style.opacity = 1;
 document.querySelector('input')
   .addEventListener('change', function () {
 
-    var fr = new FileReader();
+    let fr = new FileReader();
     fr.onload = function () {
+      let ldrContent = "";
+      ldrContent = fr.result;
+      ldrContent = ldrContent.split(/\r?\n/);
       document.querySelector('.output')
-        .textContent = fr.result;
+        .textContent = '';
+      ldrContent.forEach(element => {
+        let para = document.createElement('p');
+        para.textContent = element;
+        preview.appendChild(para);
+      });
     }
 
     fr.readAsText(this.files[0]);
@@ -44,15 +52,5 @@ function readLDR() {
     list.appendChild(para);
     list.appendChild(listItem);
 
-  }
-}
-
-function returnFileSize(number) {
-  if (number < 1024) {
-    return `${number} bytes`;
-  } else if (number >= 1024 && number < 1048576) {
-    return `${(number / 1024).toFixed(1)} KB`;
-  } else if (number >= 1048576) {
-    return `${(number / 1048576).toFixed(1)} MB`;
   }
 }
