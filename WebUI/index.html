@@ -18,11 +18,151 @@
             <h2>Load File</h2>
             <label for="file">Choose .ldr File:</label>
             <input type="file" id="file" accept=".ldr, .jpg, .txt">
-            <h3>Lego Block Locations</h3>
-            <div class="preview"><p class="output">No files currently selected</p></ul>
+            <h3>LDR File</h3>
+            <div class="preview">
+                <p class="output">No files currently selected</p>
+                </ul>
         </section>
         <section>
             <h2>Configuration</h2>
+            <div>
+                <div>
+                    <h3>General</h3>
+                    <label for="stepDelay">Step Delay</label>
+                    <input name="stepDelay" type="number" placeholder="40" step="1" min="0" />
+                    <label for="bedLength">Print Bed Length (cm)</label>
+                    <input name="bedLength" type="number" placeholder="50" step="0.01" min="0" />
+                    <label for="bedWidth">Print Bed Width (cm)</label>
+                    <input name="bedWidth" type="number" placeholder="50" step="0.01" min="0" />
+                </div>
+                <h3>X</h3>
+                <label for="dirX">Direction Pin</label>
+                <select name="dirX" id="dirX">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="0">4</option>
+                    <option value="1">5</option>
+                    <option value="2">6</option>
+                    <option value="3">7</option>
+                    <option value="0">8</option>
+                    <option value="1">9</option>
+                    <option value="2">10</option>
+                    <option value="3">11</option>
+                    <option value="0">12</option>
+                    <option value="1">13</option>
+                    <option value="2">14</option>
+                    <option value="3">15</option>
+                </select>
+                <label for="stepX">Step Pin</label>
+                <select name="stepX" id="stepX">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="0">4</option>
+                    <option value="1">5</option>
+                    <option value="2">6</option>
+                    <option value="3">7</option>
+                    <option value="0">8</option>
+                    <option value="1">9</option>
+                    <option value="2">10</option>
+                    <option value="3">11</option>
+                    <option value="0">12</option>
+                    <option value="1">13</option>
+                    <option value="2">14</option>
+                    <option value="3">15</option>
+                </select>
+                <label for="stepSizeX">Step Size (mm)</label>
+                <input name="stepSizeX" type="number" placeholder="1.0" step="0.1" min="0" />
+            </div>
+            <div>
+                <h3>Y</h3>
+                <label for="dirY">Direction Pin</label>
+                <select name="dirY" id="dirY">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="0">4</option>
+                    <option value="1">5</option>
+                    <option value="2">6</option>
+                    <option value="3">7</option>
+                    <option value="0">8</option>
+                    <option value="1">9</option>
+                    <option value="2">10</option>
+                    <option value="3">11</option>
+                    <option value="0">12</option>
+                    <option value="1">13</option>
+                    <option value="2">14</option>
+                    <option value="3">15</option>
+                </select>
+                <label for="stepY">Step Pin</label>
+                <select name="stepY" id="stepY">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="0">4</option>
+                    <option value="1">5</option>
+                    <option value="2">6</option>
+                    <option value="3">7</option>
+                    <option value="0">8</option>
+                    <option value="1">9</option>
+                    <option value="2">10</option>
+                    <option value="3">11</option>
+                    <option value="0">12</option>
+                    <option value="1">13</option>
+                    <option value="2">14</option>
+                    <option value="3">15</option>
+                </select>
+                <label for="stepSizeY">Step Size (mm)</label>
+                <input name="stepSizeY" type="number" placeholder="1.0" step="0.1" min="0" />
+            </div>
+            <div>
+                <h3>Z</h3>
+                <label for="dirZ">Direction Pin</label>
+                <select name="dirZ" id="dirZ">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="0">4</option>
+                    <option value="1">5</option>
+                    <option value="2">6</option>
+                    <option value="3">7</option>
+                    <option value="0">8</option>
+                    <option value="1">9</option>
+                    <option value="2">10</option>
+                    <option value="3">11</option>
+                    <option value="0">12</option>
+                    <option value="1">13</option>
+                    <option value="2">14</option>
+                    <option value="3">15</option>
+                </select>
+                <label for="stepZ">Step Pin</label>
+                <select name="stepZ" id="stepZ">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="0">4</option>
+                    <option value="1">5</option>
+                    <option value="2">6</option>
+                    <option value="3">7</option>
+                    <option value="0">8</option>
+                    <option value="1">9</option>
+                    <option value="2">10</option>
+                    <option value="3">11</option>
+                    <option value="0">12</option>
+                    <option value="1">13</option>
+                    <option value="2">14</option>
+                    <option value="3">15</option>
+                </select>
+                <label for="stepSizeZ">Step Size (mm)</label>
+                <input name="stepSizeZ" type="number" placeholder="1.0" step="0.1" min="0" />
+            </div>
         </section>
         <div>
             <button>Submit</button>
