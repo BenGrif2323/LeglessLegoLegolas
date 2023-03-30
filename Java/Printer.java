@@ -189,15 +189,12 @@ public class Printer {
             if (lego.getX() < xNorm) {
                 xNorm = lego.getX();
             }
-            ;
             if (lego.getY() < yNorm) {
                 yNorm = lego.getY();
             }
-            ;
             if (lego.getZ() < zNorm) {
                 zNorm = lego.getZ();
             }
-            ;
         }
         for (Lego lego : legos) {
             lego.normalize(xNorm, yNorm, zNorm);
