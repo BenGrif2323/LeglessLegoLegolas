@@ -17,8 +17,10 @@ document.querySelector('input').addEventListener('change', function () {
     //print("Lego Locations:", preview);
     //print(ldrContent, preview);
     normalizeLDR(ldrContent);
-    print("Normalized Lego Locations:", preview);
-    print(ldrContent, preview);
+    //print("Normalized Lego Locations:", preview);
+    //print(ldrContent, preview);
+    print("File Download:", preview);
+    createPrintInstructions(ldrContent);
   }
 
   fr.readAsText(this.files[0]);
@@ -71,7 +73,22 @@ function print(output, printLocation) {
     para.textContent = output;
     printLocation.appendChild(para);
   }
+}
 
+function createPrintInstructions(ldrContent) {
+  content = ldrContent;
+  createINO(content, "Output", preview);
+}
+
+function createINO(content, outputName, printLocation) {
+  const link = document.createElement("a");
+  const file = new Blob([content], { type: 'text/plain' });
+  link.href = URL.createObjectURL(file);
+  link.download = outputName + ".ino";
+  let temp = document.createElement("button");
+  temp.textContent = "Download File";
+  link.appendChild(temp);
+  printLocation.appendChild(link);
 }
 
 class Lego {
