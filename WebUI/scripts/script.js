@@ -11,16 +11,22 @@ document.querySelector('input').addEventListener('change', function () {
     ldrContent = fr.result;
     ldrContent = ldrContent.split(/\r?\n/);
     document.querySelector('.output').textContent = '';
-    //print("LDR File:", preview);
-    //print(ldrContent, preview);
+    print("LDR File:", preview);
+    print(ldrContent, preview);
     ldrContent = readLDR(ldrContent);
-    //print("Lego Locations:", preview);
+    print("Lego Locations:", preview);
+    print(ldrContent, preview);
+    ldrContent = normalizeLDR(ldrContent);
+    print("Normalized Lego Locations:", preview);
+    print(ldrContent, preview);
+    ldrContent = sortLegos(ldrContent);
+    print("Sort Legos:", preview);
+    print(ldrContent, preview);
+    //ldrContent = createPrintInstructions(ldrContent);
+    //print("Print Instructions:", preview);
     //print(ldrContent, preview);
-    normalizeLDR(ldrContent);
-    //print("Normalized Lego Locations:", preview);
-    //print(ldrContent, preview);
-    print("File Download:", preview);
-    createPrintInstructions(ldrContent);
+    print("Create .ino File:", preview);
+    createINO(ldrContent, "Output", preview);
   }
 
   fr.readAsText(this.files[0]);
@@ -44,6 +50,7 @@ function normalizeLDR(ldrContent) {
   ldrContent.forEach(lego => {
     lego.normalize(xNorm, yNorm, zNorm);
   })
+  return ldrContent;
 }
 
 function readLDR(ldrContent) {
@@ -63,11 +70,33 @@ function readLDR(ldrContent) {
 
 function print(output, printLocation) {
   try {
-    output.forEach(element => {
-      let para = document.createElement('p');
-      para.textContent = element;
-      printLocation.appendChild(para);
-    })
+    try {
+      try {
+        output.forEach(e1 => {
+          e1.forEach(e2 => {
+            e2.forEach(e3 => {
+              let para = document.createElement('p');
+              para.textContent = e3;
+              printLocation.appendChild(para);
+            });
+          });
+        })
+      } catch (error) {
+        output.forEach(e1 => {
+          e1.forEach(e2 => {
+            let para = document.createElement('p');
+            para.textContent = e2;
+            printLocation.appendChild(para);
+          });
+        })
+      }
+    } catch (error) {
+      output.forEach(element => {
+        let para = document.createElement('p');
+        para.textContent = element;
+        printLocation.appendChild(para);
+      })
+    }
   } catch (error) {
     let para = document.createElement('p');
     para.textContent = output;
@@ -76,8 +105,63 @@ function print(output, printLocation) {
 }
 
 function createPrintInstructions(ldrContent) {
-  content = ldrContent;
-  createINO(content, "Output", preview);
+}
+
+function sortLegos(ldrContent) {
+  let splitXY = [];
+  splitY(ldrContent).forEach(y => {
+    splitXY.push(splitX(y));
+  });
+  splitXY.forEach(y => {
+    y.forEach(x => {
+      x.sort(function (a, b) {
+        if (a.z > b.z) return -1;
+        if (a.z < b.z) return 1;
+        return 0;
+      });
+    });
+  });
+  return splitXY;
+}
+
+function splitY(content) {
+  let yValues = []
+  content.forEach(lego => {
+    if (!yValues.includes(lego.y)) {
+      yValues.push(lego.y);
+    }
+  });
+  let splitArray = [];
+  yValues.forEach(y => {
+    let array = [];
+    content.forEach(lego => {
+      if (lego.y == y) {
+        array.push(lego);
+      }
+    });
+    splitArray.push(array);
+  });
+  return splitArray;
+}
+
+function splitX(content) {
+  let xValues = []
+  content.forEach(lego => {
+    if (!xValues.includes(lego.x)) {
+      xValues.push(lego.x);
+    }
+  });
+  let splitArray = [];
+  xValues.forEach(x => {
+    let array = [];
+    content.forEach(lego => {
+      if (lego.x == x) {
+        array.push(lego);
+      }
+    });
+    splitArray.push(array);
+  });
+  return splitArray;
 }
 
 function createINO(content, outputName, printLocation) {
