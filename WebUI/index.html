@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Legless Lego Legolas</title>
+    <link href="images/favicon.png" rel="icon" type="image/x-icon" >
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script src="scripts/script.js" defer></script>
 </head>
@@ -27,15 +28,17 @@
             <h2>Configuration</h2>
             <div>
                 <div>
-                    <h3>General</h3>
+                    <h3>General Settings</h3>
                     <label for="stepDelay">Step Delay</label>
                     <input name="stepDelay" type="number" placeholder="40" step="1" min="0" />
-                    <label for="bedLength">Print Bed Length (cm)</label>
-                    <input name="bedLength" type="number" placeholder="50" step="0.01" min="0" />
-                    <label for="bedWidth">Print Bed Width (cm)</label>
-                    <input name="bedWidth" type="number" placeholder="50" step="0.01" min="0" />
+                    <label for="xBound">Print Area Length (cm)</label>
+                    <input name="xBound" type="number" placeholder="50" step="0.01" min="0" />
+                    <label for="zBound">Print Area Width (cm)</label>
+                    <input name="zBound" type="number" placeholder="50" step="0.01" min="0" />
+                    <label for="yBound">Print Area Height (cm)</label>
+                    <input name="yBound" type="number" placeholder="50" step="0.01" min="0" />
                 </div>
-                <h3>X</h3>
+                <h3>X Settings</h3>
                 <label for="dirX">Direction Pin</label>
                 <select name="dirX" id="dirX">
                     <option value="0">0</option>
@@ -78,7 +81,7 @@
                 <input name="stepSizeX" type="number" placeholder="1.0" step="0.1" min="0" />
             </div>
             <div>
-                <h3>Y</h3>
+                <h3>Y Settings</h3>
                 <label for="dirY">Direction Pin</label>
                 <select name="dirY" id="dirY">
                     <option value="0">0</option>
@@ -121,7 +124,7 @@
                 <input name="stepSizeY" type="number" placeholder="1.0" step="0.1" min="0" />
             </div>
             <div>
-                <h3>Z</h3>
+                <h3>Z Settings</h3>
                 <label for="dirZ">Direction Pin</label>
                 <select name="dirZ" id="dirZ">
                     <option value="0">0</option>
