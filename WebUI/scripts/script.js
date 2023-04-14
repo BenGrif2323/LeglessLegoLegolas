@@ -105,7 +105,6 @@ function print(output, printLocation) {
 }
 
 function createPrintInstructions(ldrContent) {
-  let pinLED = 48;
   let pinDisableMotors = 46;
   let pinDirX = 45;
   let pinStepX = 40;
@@ -126,8 +125,7 @@ function createPrintInstructions(ldrContent) {
   let currentY = 0;
 
   function beginINO() {
-    return "#define LED_RGB " + pinLED + "\n" + //default 48
-      "#define PIN_STEP_X " + pinStepX + "\n" + //default 40
+    return "#define PIN_STEP_X " + pinStepX + "\n" + //default 40
       "#define PIN_STEP_Y " + pinStepY + "\n" + //default 47
       "#define PIN_STEP_Z " + pinStepZ + "\n" + //default 39
       //"#define PIN_STEP_4 " + pinStep4 + "\n" + //default 37
