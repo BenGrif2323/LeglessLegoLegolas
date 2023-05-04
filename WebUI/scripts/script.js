@@ -3,33 +3,42 @@ const preview = document.querySelector('.preview');
 
 input.style.opacity = 1;
 
-document.querySelector('input').addEventListener('change', function () {
-
+var ldrContent = '';
+document.getElementById('file').addEventListener('change', function () {
+  ldrContent = '';
   let fr = new FileReader();
   fr.onload = function () {
-    let ldrContent = "";
     ldrContent = fr.result;
     ldrContent = ldrContent.split(/\r?\n/);
-    document.querySelector('.output').textContent = '';
-    print("LDR File:", preview);
+    document.querySelector('.preview').innerHTML = '';
+    print('LDR File:', preview);
     print(ldrContent, preview);
-    ldrContent = readLDR(ldrContent);
-    print("Lego Locations:", preview);
-    print(ldrContent, preview);
-    ldrContent = normalizeLDR(ldrContent);
-    print("Normalized Lego Locations:", preview);
-    print(ldrContent, preview);
-    ldrContent = sortLegos(ldrContent);
-    print("Sort Legos:", preview);
-    print(ldrContent, preview);
-    ldrContent = createPrintInstructions(ldrContent);
-    print("Print Instructions:", preview);
-    print(ldrContent, preview);
-    print("Create .ino File:", preview);
-    createINO(ldrContent, "Output", preview);
   }
 
   fr.readAsText(this.files[0]);
+})
+
+document.getElementById('submit').addEventListener('click', function () {
+  if (ldrContent != '') {
+    document.querySelector('.preview').innerHTML = '';
+    print('LDR File:', preview);
+    print(ldrContent, preview);
+    let ldrInfo = ldrContent;
+    ldrInfo = readLDR(ldrInfo);
+    print('Lego Locations:', preview);
+    print(ldrInfo, preview);
+    ldrInfo = normalizeLDR(ldrInfo);
+    print('Normalized Lego Locations:', preview);
+    print(ldrInfo, preview);
+    ldrInfo = sortLegos(ldrInfo);
+    print('Sort Legos:', preview);
+    print(ldrInfo, preview);
+    ldrInfo = createPrintInstructions(ldrInfo);
+    print('Print Instructions:', preview);
+    print(ldrInfo, preview);
+    print('Create .ino File:', preview);
+    createINO(ldrInfo, 'Output', preview);
+  }
 })
 
 function normalizeLDR(ldrContent) {
@@ -106,84 +115,196 @@ function print(output, printLocation) {
 
 function createPrintInstructions(ldrContent) {
   let pinDisableMotors = 46;
+  try {
+    pinDisableMotors = document.getElementById('disableMotors').value;
+  } catch (error) {
+    console.log(error);
+  }
   let pinDirX = 45;
+  try {
+    pinDirX = document.getElementById('dirX').value;
+  } catch (error) {
+    console.log(error);
+  }
   let pinStepX = 40;
+  try {
+    pinStepX = document.getElementById('stepX').value;
+  } catch (error) {
+    console.log(error);
+  }
   let stepSizeX = 1;
+  try {
+    let temp = parseFloat(document.getElementById('stepSizeX').value);
+    if (temp >= 0) {
+      stepSizeX = temp;
+    }
+    else {
+      throw "Error with stepSizeX, using default value";
+    }
+  } catch (error) {
+    console.log(error);
+  }
   let pinDirY = 21;
+  try {
+    pinDirY = document.getElementById('dirY').value;
+  } catch (error) {
+    console.log(error);
+  }
   let pinStepY = 47;
+  try {
+    pinStepY = document.getElementById('stepY').value;
+  } catch (error) {
+    console.log(error);
+  }
   let stepSizeY = 1;
+  try {
+    let temp = parseFloat(document.getElementById('stepSizeY').value);
+    if (temp >= 0) {
+      stepSizeY = temp;
+    }
+    else {
+      throw "Error with stepSizeY, using default value";
+    }
+  } catch (error) {
+    console.log(error);
+  }
   let pinDirZ = 14;
+  try {
+    pinDirZ = document.getElementById('dirZ').value;
+  } catch (error) {
+    console.log(error);
+  }
   let pinStepZ = 39;
+  try {
+    pinStepZ = document.getElementById('stepZ').value;
+  } catch (error) {
+    console.log(error);
+  }
   let stepSizeZ = 1;
+  try {
+    let temp = parseFloat(document.getElementById('stepSizeZ').value);
+    if (temp >= 0) {
+      stepSizeZ = temp;
+    }
+    else {
+      throw "Error with stepSizeZ, using default value";
+    }
+  } catch (error) {
+    console.log(error);
+  }
   let stepDelay = 40;
+  try {
+    let temp = parseInt(document.getElementById('stepDelay').value);
+    if (temp >= 0) {
+      stepDelay = temp;
+    }
+    else {
+      throw "Error with stepDelay, using default value";
+    }
+  } catch (error) {
+    console.log(error);
+  }
   let xBound = 500;
+  try {
+    let temp = parseFloat(document.getElementById('xBound').value);
+    if (temp >= 0) {
+      xBound = temp;
+    }
+    else {
+      throw "Error with xBound, using default value";
+    }
+  } catch (error) {
+    console.log(error);
+  }
   let yBound = 500;
+  try {
+    let temp = parseFloat(document.getElementById('yBound').value);
+    if (temp >= 0) {
+      yBound = temp;
+    }
+    else {
+      throw "Error with yBound, using default value";
+    }
+  } catch (error) {
+    console.log(error);
+  }
   let zBound = 500;
+  try {
+    let temp = parseFloat(document.getElementById('zBound').value);
+    if (temp >= 0) {
+      zBound = temp;
+    }
+    else {
+      throw "Error with zBound, using default value";
+    }
+  } catch (error) {
+    console.log(error);
+  }
   let headPosX = 0;
   let headPosY = 0;
   let headPosZ = 0;
   let currentY = 0;
 
   function beginINO() {
-    return "#define PIN_STEP_X " + pinStepX + "\n" + //default 40
-      "#define PIN_STEP_Y " + pinStepY + "\n" + //default 47
-      "#define PIN_STEP_Z " + pinStepZ + "\n" + //default 39
-      //"#define PIN_STEP_4 " + pinStep4 + "\n" + //default 37
-      "#define PIN_DIR_X " + pinDirX + "\n" + //default 45
-      "#define PIN_DIR_Y " + pinDirY + "\n" + //default 21
-      "#define PIN_DIR_Z " + pinDirZ + "\n" + //default 14
-      //"#define PIN_DIR_4 " + pinDir4 + "\n" + //default 35
-      "#define PIN_DISABLE_MOTORS " + pinDisableMotors + "\n\n" + //default 46
-      "int stepDelay = " + stepDelay + ";\n\n" + //default 40
-      "void move(int x, int absX, int y, int absY, int z, int absZ, int max) {\n" +
-      "  digitalWrite(PIN_DIR_X, x >= 0);\n" +
-      "  digitalWrite(PIN_DIR_Y, y >= 0);\n" +
-      "  digitalWrite(PIN_DIR_Z, z >= 0);\n" +
-      "  for (int i = 0; i < max; i++) {\n" +
-      "    if (i < absX) {\n" +
-      "      digitalWrite(PIN_STEP_X, HIGH);\n" +
-      "    }\n" +
-      "    if (i < absY) {\n" +
-      "      digitalWrite(PIN_STEP_Y, HIGH);\n" +
-      "    }\n" +
-      "    if (i < absZ) {\n" +
-      "      digitalWrite(PIN_STEP_Z, HIGH);\n" +
-      "    }\n" +
-      "    delayMicroseconds(stepDelay);\n" +
-      "    digitalWrite(PIN_STEP_X, LOW);\n" +
-      "    digitalWrite(PIN_STEP_Y, LOW);\n" +
-      "    digitalWrite(PIN_STEP_Z, LOW);\n" +
-      "    delayMicroseconds(stepDelay);\n" +
-      "  }\n" +
-      "}\n\n" +
-      "void initializeHead() {\n"+
-      "  //Code to Initialize Print Head\n" +
-      "}\n\n" +
-      "void pickUpLego() {\n" +
-      "  //Code to Pick Up a Lego\n" +
-      "}\n\n" +
-      "void placeLego() {\n" +
-      "  //Code to Place a Lego\n" +
-      "}\n\n" +
-      "void setup() {\n" +
-      "  //put your setup code here, to run once:\n" +
-      "  pinMode(PIN_DISABLE_MOTORS, OUTPUT);\n" +
-      "  pinMode(PIN_STEP_X, OUTPUT);\n" +
-      "  pinMode(PIN_STEP_Y, OUTPUT);\n" +
-      "  pinMode(PIN_STEP_Z, OUTPUT);\n" +
-      "  //pinMode(PIN_STEP_4, OUTPUT);\n" +
-      "  pinMode(PIN_DIR_X, OUTPUT);\n" +
-      "  pinMode(PIN_DIR_Y, OUTPUT);\n" +
-      "  pinMode(PIN_DIR_Z, OUTPUT);\n" +
-      "  //pinMode(PIN_DIR_4, OUTPUT);\n" +
-      "  delayMicroseconds(1000000);\n\n";
+    return '#define PIN_STEP_X ' + pinStepX + '\n' + //default 40
+      '#define PIN_STEP_Y ' + pinStepY + '\n' + //default 47
+      '#define PIN_STEP_Z ' + pinStepZ + '\n' + //default 39
+      //'#define PIN_STEP_4 ' + pinStep4 + '\n' + //default 37
+      '#define PIN_DIR_X ' + pinDirX + '\n' + //default 45
+      '#define PIN_DIR_Y ' + pinDirY + '\n' + //default 21
+      '#define PIN_DIR_Z ' + pinDirZ + '\n' + //default 14
+      //'#define PIN_DIR_4 ' + pinDir4 + '\n' + //default 35
+      '#define PIN_DISABLE_MOTORS ' + pinDisableMotors + '\n\n' + //default 46
+      'int stepDelay = ' + stepDelay + ';\n\n' + //default 40
+      'void move(int x, int absX, int y, int absY, int z, int absZ, int max) {\n' +
+      '  digitalWrite(PIN_DIR_X, x >= 0);\n' +
+      '  digitalWrite(PIN_DIR_Y, y >= 0);\n' +
+      '  digitalWrite(PIN_DIR_Z, z >= 0);\n' +
+      '  for (int i = 0; i < max; i++) {\n' +
+      '    if (i < absX) {\n' +
+      '      digitalWrite(PIN_STEP_X, HIGH);\n' +
+      '    }\n' +
+      '    if (i < absY) {\n' +
+      '      digitalWrite(PIN_STEP_Y, HIGH);\n' +
+      '    }\n' +
+      '    if (i < absZ) {\n' +
+      '      digitalWrite(PIN_STEP_Z, HIGH);\n' +
+      '    }\n' +
+      '    delayMicroseconds(stepDelay);\n' +
+      '    digitalWrite(PIN_STEP_X, LOW);\n' +
+      '    digitalWrite(PIN_STEP_Y, LOW);\n' +
+      '    digitalWrite(PIN_STEP_Z, LOW);\n' +
+      '    delayMicroseconds(stepDelay);\n' +
+      '  }\n' +
+      '}\n\n' +
+      'void initializeHead() {\n' +
+      '  //Code to Initialize Print Head\n' +
+      '}\n\n' +
+      'void pickUpLego() {\n' +
+      '  //Code to Pick Up a Lego\n' +
+      '}\n\n' +
+      'void placeLego() {\n' +
+      '  //Code to Place a Lego\n' +
+      '}\n\n' +
+      'void setup() {\n' +
+      '  //put your setup code here, to run once:\n' +
+      '  pinMode(PIN_DISABLE_MOTORS, OUTPUT);\n' +
+      '  pinMode(PIN_STEP_X, OUTPUT);\n' +
+      '  pinMode(PIN_STEP_Y, OUTPUT);\n' +
+      '  pinMode(PIN_STEP_Z, OUTPUT);\n' +
+      '  //pinMode(PIN_STEP_4, OUTPUT);\n' +
+      '  pinMode(PIN_DIR_X, OUTPUT);\n' +
+      '  pinMode(PIN_DIR_Y, OUTPUT);\n' +
+      '  pinMode(PIN_DIR_Z, OUTPUT);\n' +
+      '  //pinMode(PIN_DIR_4, OUTPUT);\n' +
+      '  delayMicroseconds(1000000);\n\n';
   }
 
   function initializePrintHead() {
     headPosX = 0;
     headPosY = 0;
     headPosZ = 0;
-    return "  initializeHead();\n\n";
+    return '  initializeHead();\n\n';
   }
 
   function moveTo(x, y, z) {
@@ -194,25 +315,25 @@ function createPrintInstructions(ldrContent) {
     headPosX = x;
     headPosY = y;
     headPosZ = z;
-    return "  move(" + tempX + ", " + Math.abs(tempX) + ", "
-      + tempY + ", " + Math.abs(tempY) + ", " + tempZ
-      + ", " + Math.abs(tempZ) + ", " + tempMax + ");\n\n";;
+    return '  move(' + tempX + ', ' + Math.abs(tempX) + ', '
+      + tempY + ', ' + Math.abs(tempY) + ', ' + tempZ
+      + ', ' + Math.abs(tempZ) + ', ' + tempMax + ');\n\n';;
   }
 
   function legoReload() {
-    return moveTo(0, currentY, 0) + moveTo(0, 0, 0) + 
-    "  pickUpLego();\n\n" + moveTo(0, currentY, 0);
+    return moveTo(0, currentY, 0) + moveTo(0, 0, 0) +
+      '  pickUpLego();\n\n' + moveTo(0, currentY, 0);
   }
 
   function legoPlace(lego) {
     currentY = lego.y;
-    return moveTo(lego.x, lego.y, lego.z) + "  placeLego();\n\n";
+    return moveTo(lego.x, lego.y, lego.z) + '  placeLego();\n\n';
   }
 
   function endINO() {
-    return moveTo(0, yBound, 0) + "}\n\n" +
-      "void loop() {\n" +
-      "}";
+    return moveTo(0, yBound, 0) + '}\n\n' +
+      'void loop() {\n' +
+      '}';
   }
 
   //Create File Text
@@ -229,8 +350,8 @@ function createPrintInstructions(ldrContent) {
             output += legoPlace(lego);
           }
           else {
-            console.log("Lego is out of bound: " + lego);
-            throw "Lego is out of bounds: " + lego;
+            console.log('Lego is out of bound: ' + lego);
+            throw 'Lego is out of bounds: ' + lego;
           }
         });
       });
@@ -303,25 +424,25 @@ function splitX(content) {
 
 function createINO(content, outputName, printLocation) {
   try {
-    let output = "";
+    let output = '';
     content.forEach(e => {
-      output += e + "\n";
+      output += e + '\n';
     })
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     const file = new Blob([output], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
-    link.download = outputName + ".txt";
-    let temp = document.createElement("button");
-    temp.textContent = "Download File";
+    link.download = outputName + '.txt';
+    let temp = document.createElement('button');
+    temp.textContent = 'Download File';
     link.appendChild(temp);
     printLocation.appendChild(link);
   } catch (error) {
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     const file = new Blob([content], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
-    link.download = outputName + ".txt";
-    let temp = document.createElement("button");
-    temp.textContent = "Download File";
+    link.download = outputName + '.txt';
+    let temp = document.createElement('button');
+    temp.textContent = 'Download File';
     link.appendChild(temp);
     printLocation.appendChild(link);
   }

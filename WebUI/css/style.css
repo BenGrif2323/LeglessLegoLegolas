@@ -1,0 +1,75 @@
+body {
+    text-align: center;
+    background: black;
+    color: lightblue;
+}
+
+main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.file-load {
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+.choose-file {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.choose-file input {
+    margin: 0;
+    border: 0;
+    width: 50%;
+}
+
+.preview {
+    background: white;
+    color: black;
+    width: 25vw;
+    height: 25vh;
+    overflow: auto;
+}
+
+.setting-class {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.setting-class h3 {
+    width: 15%;
+    text-align: left;
+}
+
+.setting-list {
+    width: 85%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.setting {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.setting input {
+    width: 5rem;
+}
