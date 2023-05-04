@@ -39,6 +39,8 @@ main {
     width: 25vw;
     height: 25vh;
     overflow: auto;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .setting-class {
