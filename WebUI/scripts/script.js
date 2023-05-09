@@ -21,23 +21,24 @@ document.getElementById('file').addEventListener('change', function () {
 document.getElementById('submit').addEventListener('click', function () {
   if (ldrContent != '') {
     document.querySelector('.preview').innerHTML = '';
+    document.getElementById('download').innerHTML = '';
     print('LDR File:', preview);
     print(ldrContent, preview);
     let ldrInfo = ldrContent;
     ldrInfo = readLDR(ldrInfo);
-    print('Lego Locations:', preview);
-    print(ldrInfo, preview);
+    //print('Lego Locations:', preview);
+    //print(ldrInfo, preview);
     ldrInfo = normalizeLDR(ldrInfo);
-    print('Normalized Lego Locations:', preview);
-    print(ldrInfo, preview);
+    //print('Normalized Lego Locations:', preview);
+    //print(ldrInfo, preview);
     ldrInfo = sortLegos(ldrInfo);
-    print('Sort Legos:', preview);
-    print(ldrInfo, preview);
+    //print('Sort Legos:', preview);
+    //print(ldrInfo, preview);
     ldrInfo = createPrintInstructions(ldrInfo);
-    print('Print Instructions:', preview);
-    print(ldrInfo, preview);
-    print('Create .ino File:', preview);
-    createINO(ldrInfo, 'Output', preview);
+   // print('Print Instructions:', preview);
+    //print(ldrInfo, preview);
+    //print('Create .ino File:', preview);
+    createINO(ldrInfo, 'Output', document.getElementById('download'));
   }
 })
 
@@ -431,7 +432,7 @@ function createINO(content, outputName, printLocation) {
     const link = document.createElement('a');
     const file = new Blob([output], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
-    link.download = outputName + '.txt';
+    link.download = outputName + '.ino';
     let temp = document.createElement('button');
     temp.textContent = 'Download File';
     link.appendChild(temp);
@@ -440,7 +441,7 @@ function createINO(content, outputName, printLocation) {
     const link = document.createElement('a');
     const file = new Blob([content], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
-    link.download = outputName + '.txt';
+    link.download = outputName + '.ino';
     let temp = document.createElement('button');
     temp.textContent = 'Download File';
     link.appendChild(temp);
